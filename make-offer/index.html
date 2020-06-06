@@ -285,7 +285,7 @@ async function fetchAsyncPOST (url, req_data) {
 	}
 
 	function handle_domain_response(response) {
-			if(response.hasOwnProperty('dn')) {
+			if(response.hasOwnProperty('dn') && response.hasOwnProperty('min')) {
 
 				if (typeof(Storage) !== "undefined") {
 					window.localStorage.setItem('domain', response['dn']);
@@ -301,7 +301,6 @@ async function fetchAsyncPOST (url, req_data) {
 				document.getElementById("buynow-link").style.display = ""
 				document.getElementById("buynow-link").href = web_url + '/domain?q=' + response['dn']
 				document.getElementById("buynow-link").innerHTML = 'Buy from our Marketplace, we accept Paypal - $' + response['bin'] +' US'
-
 
 	     		document.getElementById("form-offer-validate").style.display = "none"
 	     		document.getElementById("form-offer-validate").innerHTML = '<span class="lnr lnr-warning"></span> Please enter an offer above $' + response['min'] + ' US'

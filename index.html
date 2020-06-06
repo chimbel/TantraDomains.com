@@ -143,13 +143,10 @@
 						</div>
 
 
-						<div class="col-12" id="make-offer-section" style="display:none">
-
-
+						<div class="col-12" id="offers-section" style="display:none">
 						<hr>
-
-							<a href="#" id="make-offer-link">
-								Make an offer
+							<a href="#" id="reveal-offer-link">
+								Reveal promo code
 							</a>
 						</div>
 
@@ -253,15 +250,16 @@
 				var params = getUrlVars();
 				document.getElementById("domain-title").innerHTML = response['dn']
 
-				if(params.hasOwnProperty('rebrand')) {
+				if(response.hasOwnProperty('promo')) {
 					document.getElementById("status-msg").style.display = ""
-					document.getElementById("status-msg").className = 'msg msg-info text-center'
-					document.getElementById("status-msg").innerHTML = '<span class="lnr lnr-chevron-right-circle"></span> On Mar 17 we rebranded to <b>Tantra.me</b> - Tantra Media, we now accept Paypal on our website'
-					document.getElementById("forsale").innerHTML = "The domain name <br><b style='color:#fff'>" + response['dn'] + '</b><br> is for sale'
+					document.getElementById("status-msg").className = 'msg msg-magick text-center'
+					document.getElementById("status-msg").innerHTML = '<span class="lnr lnr-chevron-right-circle"></span> ' + response['promo']
 				} else {
 					document.getElementById("status-msg").style.display = "none"
-					document.getElementById("forsale").innerHTML = "The domain name <br><b style='color:#fff'>" + response['dn'] + '</b><br> is for sale'
 				}
+
+				document.getElementById("forsale").innerHTML = "The domain name <br><b style='color:#fff'>" + response['dn'] + '</b><br> is for sale'
+
 
 				document.getElementById("bin").innerHTML = '$' + response['bin'] + ' US'
 
@@ -273,10 +271,17 @@
 					document.getElementById("discount").innerHTML = '<br><span class="lnr lnr-tag"></span> ' + response['discount']
 				}
 
-				if(response.hasOwnProperty('min')) {
-					document.getElementById("make-offer-link").href = web_url + '/make-offer?q=' + params['q']
-					document.getElementById("make-offer-link").innerHTML = 'Make an offer for ' + response['dn'] + ' (min $' + response['min'] + ' US)'
-					//document.getElementById("make-offer-section").style.display = ""
+				if(response.hasOwnProperty('discount')) {
+					document.getElementById("price").style = "font-size: 1.8em; font-weight: 200; color:lightgrey"
+					document.getElementById("price").innerHTML = '$' + response['price']
+
+					document.getElementById("discount").style.display = ""
+					document.getElementById("discount").innerHTML = '<br><span class="lnr lnr-tag"></span> ' + response['discount']
+				}
+
+				if(params.hasOwnProperty('promo') === false) {
+						document.getElementById("reveal-offer-link").innerHTML = 'Reveal promo code to buy ' + response['dn'] + ' for an additional discount'
+						document.getElementById("offers-section").style.display = ""
 				}
 
 				create_pay_data = {
@@ -358,6 +363,13 @@
 
 		window.location.href = window.location.href + 'about';
 	}
+
+	document.getElementById("reveal-offer-link").addEventListener("click", function(event) {
+		event.preventDefault()
+			window.location.href = window.location.href + '&promo=' + ['lahd7sd82b', '0wjef0n0'][Math.floor(Math.random() * 3)];
+	});
+
+
 </script>
 	<script src="js/vendor/jquery-2.2.4.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
