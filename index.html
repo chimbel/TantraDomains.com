@@ -73,6 +73,13 @@
 
 						<div class="card card-body bg-white text-center">
 
+
+						<span id="discount" style="display:none">
+
+
+						</span>
+
+
 						<h3 class="card-title" id="domain-title">
 
 						</h3>
@@ -86,11 +93,6 @@
 					  </del>
 
 						<span id="bin" class="bin" >
-
-						</span>
-
-						<span id="discount" style="display:none">
-
 
 						</span>
 
@@ -250,16 +252,7 @@
 				var params = getUrlVars();
 				document.getElementById("domain-title").innerHTML = response['dn']
 
-				if(response.hasOwnProperty('promo')) {
-					document.getElementById("status-msg").style.display = ""
-					document.getElementById("status-msg").className = 'msg msg-magick text-center'
-					document.getElementById("status-msg").innerHTML = '<span class="lnr lnr-chevron-right-circle"></span> ' + response['promo']
-				} else {
-					document.getElementById("status-msg").style.display = "none"
-				}
-
 				document.getElementById("forsale").innerHTML = "The domain name <br><b style='color:#fff'>" + response['dn'] + '</b><br> is for sale'
-
 
 				document.getElementById("bin").innerHTML = '$' + response['bin'] + ' US'
 
@@ -267,15 +260,7 @@
 					document.getElementById("price").style = "font-size: 1.8em; font-weight: 200; color:lightgrey"
 					document.getElementById("price").innerHTML = '$' + response['price']
 
-					document.getElementById("discount").style.display = ""
-					document.getElementById("discount").innerHTML = '<br><span class="lnr lnr-tag"></span> ' + response['discount']
-				}
-
-				if(response.hasOwnProperty('discount')) {
-					document.getElementById("price").style = "font-size: 1.8em; font-weight: 200; color:lightgrey"
-					document.getElementById("price").innerHTML = '$' + response['price']
-
-					document.getElementById("discount").style.display = ""
+					document.getElementById("discount").style = "font-size: medium; font-weight: 200; color:#DA4453"
 					document.getElementById("discount").innerHTML = '<br><span class="lnr lnr-tag"></span> ' + response['discount']
 				}
 
@@ -328,7 +313,8 @@
 
 				}, '#paypal-button');
 
-					document.getElementById("contact").style.display = ""
+				document.getElementById("status-msg").style.display = "none"
+				document.getElementById("contact").style.display = ""
 
 				  window.dataLayer = window.dataLayer || [];
 				  function gtag(){dataLayer.push(arguments);}
@@ -366,7 +352,7 @@
 
 	document.getElementById("reveal-offer-link").addEventListener("click", function(event) {
 		event.preventDefault()
-			window.location.href = window.location.href + '&promo=' + ['lahd7sd82b', '0wjef0n0'][Math.floor(Math.random() * 3)];
+			window.location.href = window.location.href + '&promo=' + ['lahd7sd82b' ,'lahd7sd82b', '0wjef0n0'][Math.floor(Math.random() * 3)];
 	});
 
 
